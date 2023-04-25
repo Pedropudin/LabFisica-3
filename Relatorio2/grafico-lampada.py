@@ -10,3 +10,5 @@ plt.ylabel('Voltagem (V)')
 plt.savefig('LabFisica-3/Relatorio2/grafico-lampada-pontos.png')
 
 plt.close()
+
+pontos.plot()
