@@ -1,6 +1,6 @@
 import matplotlib.pyplot as plt
 
-with open('DadosOsciloscopio/scope_5_1.csv','r') as file:
+with open('DadosOsciloscopio/trans_9_1.csv','r') as file:
     file.readline()
     file.readline()
     data = file.readlines()
@@ -11,8 +11,10 @@ with open('DadosOsciloscopio/scope_5_1.csv','r') as file:
         x.append(float(i[0]))
         y.append(float(i[1]))
 
-fig,ax = plt.subplots()
+plt.xlabel('Tempo')
+plt.ylabel('Voltagem')
+plt.plot(x,y)
 
-ax.plot(x,y)
+plt.savefig('transformador.png')
 
 plt.show()
