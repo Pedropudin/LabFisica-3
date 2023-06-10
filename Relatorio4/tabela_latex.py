@@ -62,7 +62,7 @@ def readFile(filename):
         
         finalText = ""
         for f in filesWithEditedLines:
-            finalText += '\n \n \n' + r'\newpage' + '\n \n \n' + createTable(" & ".join(list(columns)) + r" \\ \hline",f,len(columns))
+            finalText += '\n \n \n' + createTable(" & ".join(list(columns)) + r" \\ \hline",f,len(columns)) + '\n \n \n' + r'\newpage'
         print(finalText)
         pyperclip.copy(finalText)
 
