@@ -25,8 +25,8 @@ def createTable(edited_columns,edited_lines, Ncolumns):
 
     text += '''
         \end{tabular}
-        \caption{COLOCAR DESCRICAO}
-        \label{tab: COLOCAR LABEL}
+        \caption{Tabela com dados para medida do campo magnético em um solenoide, numa bobina que varia no tempo.}
+        \label{tab: 1152}
     \end{table}
     '''
     
