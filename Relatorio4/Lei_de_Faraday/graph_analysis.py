@@ -7,14 +7,17 @@ CANAL1 = "Canal 1(V)"
 CANAL2 = "Canal 2(V)"
 FACTORX=1e-2
 FACTORY=1e-3
-HALL = 0.0036955570480154084
+HALL = 270.59520
+HALL_ERROR = 0.00004
 MU_0 = 4*np.pi*1e-7
 
 class Solenoide:
-    def __init__(self, r, l, n):
+    def __init__(self, r, l, n, dr, dl):
         self.r = r
         self.l = l
         self.n = n
+        self.dr = dr
+        self.dl = dl
 
     def indutancia(self):
         A = np.pi*(self.r**2)
@@ -22,8 +25,29 @@ class Solenoide:
 
 class GraphController:
     def __init__(self):
-        self.bobina_menor = Solenoide(8.10*1e-3,59.90*1e-3,2100)
-        self.bobina_maior = Solenoide(34.50*1e-3,14.90*1e-2,760)
+        self.bobina_menor = Solenoide(8.10*1e-3,59.90*1e-3,2100, 0.05*1e-3, 0.05*1e-3)
+        self.bobina_maior = Solenoide(34.50*1e-3,14.90*1e-2,760, 0.05*1e-3, 0.01*1e-2)
+
+    def indutanciaMutua(self):
+        n2 = self.bobina_maior.n * (self.bobina_maior.l/self.bobina_menor.l)
+        n1 = self.bobina_menor.n
+        l = self.bobina_menor.l
+        r = self.bobina_menor.r
+        return MU_0*n2*n1*np.pi*(r**2)/l
+
+        return 
+
+    @staticmethod
+    def period(y,x):
+        choosen = y[len(y)//2]
+        initial = x[len(y)//2]
+        final = 0
+        for i in range((len(y)//2)+1, (len(y)//2)-1):
+            if (y[i]==choosen):
+                final = x[i]
+                break
+
+        return final - initial
 
     def readChannels(self, path):
         file = pd.read_csv(path, sep=",")
@@ -35,15 +59,26 @@ class GraphController:
     def toFLoat(a, fator):
         return list(float(b)*fator for b in a)
     
-    def ddpInduzidaHall(self):
+    def ddpHall(self):
+        R = 10
+        y = self.channel_1_data()
+        return MU_0*self.bobina_maior.n*np.array(y)*HALL/(R*self.bobina_maior.l)
+
+    def ddpHallError(self):
+        R = 10
+        er = (self.bobina_maior.dl*HALL + HALL_ERROR*self.bobina_maior.l)/(self.bobina_maior.l**2)
+        return MU_0*self.bobina_maior.n*(er)/R
+
+    def ddpInduzida(self):
         arr = [0]
         R = 10
         y = self.channel_1_data()
+        x = self.time_data()
         L = self.bobina_maior.indutancia()
 
         for i in range(len(y)-1):
-            if ((self.x[i+1]-self.x[i])!=0):
-                arr.append((L/R)*(y[i+1]-y[i])/(self.x[i+1]-self.x[i]))
+            if ((x[i+1]-x[i])!=0):
+                arr.append((-L/R)*(y[i+1]-y[i])/(x[i+1]-x[i]))
             else:
                 arr.append(0)
         return arr

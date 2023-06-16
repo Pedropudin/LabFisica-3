@@ -3,14 +3,14 @@ from scipy.optimize import curve_fit
 from matplotlib import pyplot as plt
 
 controller = GraphController()
-controller.readChannels('data/1153.csv')
+controller.readChannels('data/1153_quadrada_1.csv')
+
 
 def tensaoCircuito():
-
     t = controller.time_data()
     y1 = controller.channel_1_data()
     y2 = controller.channel_2_data()
-    y3 = GraphController.smooth(controller.ddpHall(), 35)
+    y3 = GraphController.smooth(controller.ddpHall(), 1)
     plt.plot(t, y1, 'b-')
     plt.plot(t, y2, 'r-')
     plt.plot(t, y3, 'g-')
@@ -27,7 +27,7 @@ def correnteCircuito():
     t = controller.time_data()
     y1 = controller.channel_1_data()
     
-    corrente = np.array(GraphController.smooth(y1, 35))/10
+    corrente = np.array(GraphController.smooth(y1, 1))/10
     
     
     plt.plot(t, corrente, 'g-')
@@ -43,7 +43,7 @@ def correnteCircuito():
 
 def campoMagnetico():
     t = controller.time_data()
-    y1 = GraphController.smooth(controller.ddpHall()/HALL, 35)
+    y1 = GraphController.smooth(controller.ddpHall()/HALL, 1)
 
     plt.plot(t, y1, 'g-')
     plt.xlabel("Tempo (s)")
