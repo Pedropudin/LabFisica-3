@@ -39,3 +39,7 @@ def campoMagnetico():
     plt.grid()
 
     plt.show()
+
+
+tensaoCircuito()
+campoMagnetico()

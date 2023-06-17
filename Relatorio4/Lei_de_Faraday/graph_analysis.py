@@ -6,7 +6,7 @@ TEMPO = "Segundos(s)"
 CANAL1 = "Canal 1(V)"
 CANAL2 = "Canal 2(V)"
 FACTORX=1e-2
-FACTORY=1e-3
+FACTORY=1e-1
 HALL = 270.59520
 HALL_ERROR = 0.00004
 MU_0 = 4*np.pi*1e-7
@@ -34,8 +34,6 @@ class GraphController:
         l = self.bobina_menor.l
         r = self.bobina_menor.r
         return MU_0*n2*n1*np.pi*(r**2)/l
-
-        return 
 
     @staticmethod
     def period(y,x):

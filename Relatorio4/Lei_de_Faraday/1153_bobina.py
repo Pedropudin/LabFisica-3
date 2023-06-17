@@ -3,9 +3,9 @@ from scipy.optimize import curve_fit
 from matplotlib import pyplot as plt
 
 controller = GraphController()
-#controller.readChannels('data/1153_canal_2_1.csv')
-#controller.readChannels('data/1153_canal_2_2.csv')
-controller.readChannels('data/1153_canal_2_3.csv')
+controller.readChannels('data/1153_canal_2_1.csv')
+# controller.readChannels('data/1153_canal_2_2.csv')
+# controller.readChannels('data/1153_canal_2_3.csv')
 
 
 def tensaoCircuito():
