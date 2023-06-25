@@ -1,0 +1,25 @@
+import matplotlib.pyplot as plt
+import numpy as np
+
+def readCsv(csv):
+    with open(csv,'r') as file:
+        types = file.readline()
+        grand = file.readline()
+        time = []
+        volt1 = []
+        volt2 = []
+        for line in file.readlines():
+            line = line.split(',')
+            time.append(float(line[0]))
+            volt1.append(float(line[1]))
+            volt2.append(float(line[2]))
+
+    return np.array(time), np.array(volt1), np.array(volt2)
+
+def trans(t):
+    pass
+
+time, volt1, volt2 = readCsv('./data/scope_0.csv')
+
+plt.plot(time,volt1)
+plt.show()
