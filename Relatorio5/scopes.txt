@@ -1,0 +1,13 @@
+scope_0.csv: onda quadrada, 101.7, RLC no resistor
+scope_1.csv: onda quadrada, 101.7, com resistor #sim, dois iguais, mas a gente pegou regiões diferentes
+scope_2.csv: onda quadrada, 101.7, RLC no indutor
+scope_3.csv: onda quadrada, 101.7, LC
+scope_4.csv: onda quadrada, 101.7, LC
+Todos a partir de agora são com o potenciômetro, vou colocar só a resistência que a gente mediu
+scope_5.csv: não medimos
+scope_6.csv: não medimos
+scope_7.csv: 48
+scope_8.csv: 280
+scope_9.csv: 1090
+scope_10.csv: 2860
+scope_11.cs: 4660
