@@ -11,3 +11,23 @@ scope_8.csv: 280
 scope_9.csv: 1090
 scope_10.csv: 2860
 scope_11.cs: 4660
+
+
+RESISTO - RLC: ONDA QUADRADA (101.7 Hz)
+scope_1.csv
+
+
+INDUTOR - RLC: ONDA QUADRADA (101.7 Hz)
+scope_2.csv
+
+
+CIRCUITO - LC: ONDA QUADRADA (101.7 Hz)
+scope_3.csv
+
+
+CAPACITOR - RLC: VARIANDO A RESISTENCIA (101.7 Hz)
+scope_7.csv: 48
+scope_8.csv: 280
+scope_9.csv: 1090
+scope_10.csv: 2860
+scope_11.cs: 4660
